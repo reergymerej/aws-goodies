@@ -3,7 +3,7 @@
 #
 # Example:
 
-# ./s3-read.sh jex-env-files foo.env | grep VERSION
+# ./s3-read jex-env-files foo.env | grep VERSION
 # VERSION=1.0
 
 BUCKET=$1

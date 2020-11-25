@@ -2,7 +2,7 @@
 # This will update something in a file in S3.
 #
 # Example:
-# ./s3-update.sh jex-env-files foo.env VERSION 9.9
+# ./s3-update jex-env-files foo.env VERSION 9.9
 
 BUCKET=$1
 FILE=$2
