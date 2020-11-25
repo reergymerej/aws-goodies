@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Reads the value of an .env file from S3.
+#
+# Example:
+# ./jex-env-read VERSION
+
+EXAMPLE=" | ./env-read KEY"
+BUCKET=jex-env-files
+FILE=foo.env
+KEY=${1:?"KEY not specified. ${EXAMPLE}"}
+
+./read $BUCKET $FILE | \
+  grep "$KEY=.*"

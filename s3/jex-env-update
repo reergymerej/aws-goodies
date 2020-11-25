@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# This will update the value of a key in an .env in S3.
+#
+# Example:
+# ./jex-env-update VERSION 9.9
+
+EXAMPLE=" | ./update KEY VALUE"
+BUCKET=jex-env-files
+FILE=foo.env
+KEY=${1:?"KEY not specified. ${EXAMPLE}"}
+VALUE=${2:?"VALUE not specified. ${EXAMPLE}"}
+
+./read $BUCKET $FILE | \
+  sed "s/$KEY=.*/$KEY=$VALUE/g" | \
+  ./write $BUCKET $FILE

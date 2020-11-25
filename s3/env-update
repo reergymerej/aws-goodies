@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# This will update something in a file in S3.
+#
+# Example:
+# ./env-update jex-env-files foo.env VERSION 9.9
+
+EXAMPLE=" | ./update BUCKET FILE KEY VALUE"
+BUCKET=${1:?"BUCKET not specified. ${EXAMPLE}"}
+FILE=${2:?"FILE not specified. ${EXAMPLE}"}
+KEY=${3:?"KEY not specified. ${EXAMPLE}"}
+VALUE=${4:?"VALUE not specified. ${EXAMPLE}"}
+
+./read $BUCKET $FILE | \
+  sed "s/$KEY=.*/$KEY=$VALUE/g" | \
+  ./write $BUCKET $FILE
