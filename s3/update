@@ -4,11 +4,12 @@
 # Example:
 # ./update jex-env-files foo.env VERSION 9.9
 
-BUCKET=$1
-FILE=$2
-KEY=$3
-VALUE=$4
+EXAMPLE=" | ./update BUCKET FILE PATTERN REPLACEMENT"
+BUCKET=${1:?"BUCKET not specified. ${EXAMPLE}"}
+FILE=${2:?"FILE not specified. ${EXAMPLE}"}
+PATTERN=${3:?"PATTERN not specified. ${EXAMPLE}"}
+REPLACEMENT=${4:?"REPLACEMENT not specified. ${EXAMPLE}"}
 
-./s3-read.sh $BUCKET $FILE | \
-  sed "s/$KEY=.*/$KEY=$VALUE/g" | \
-  ./s3-write.sh $BUCKET $FILE
+./read $BUCKET $FILE | \
+  sed "s/$PATTERN/$REPLACEMENT/g" | \
+  ./write $BUCKET $FILE

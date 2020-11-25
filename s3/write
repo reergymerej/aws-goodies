@@ -4,7 +4,8 @@
 # Example:
 # echo "hello" | ./write jex-env-files greetings
 
-BUCKET=$1
-FILE=$2
+EXAMPLE="| echo \"hello\" | ./write BUCKET FILE"
+BUCKET=${1:?"BUCKET not specified. ${EXAMPLE}"}
+FILE=${2:?"FILE not specified. ${EXAMPLE}"}
 
 aws s3 cp - s3://$BUCKET/$FILE
